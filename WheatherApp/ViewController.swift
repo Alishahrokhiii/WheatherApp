@@ -5,7 +5,6 @@
 //  Created by Seyed Ali Shahrokhi on 1/13/1399 AP.
 //  Copyright © 1399 Seyed Ali Shahrokhi. All rights reserved.
 //
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -39,14 +38,40 @@ class ViewController: UIViewController {
                 
                 let CityName = dictionary["name"]
                 let discription = (weatherDetails.first?["description"] as? String)
+                let main = (weatherDetails.first?["main"] as? String)
                 let Temp = weatherMain["temp"] as? Double
                 let temp = Int(Temp!)
                 
  
                 DispatchQueue.main.async {
                     self.LocationLable.text = (CityName as! String)
+                    
                     self.ConditionLable.text = (discription)
                     self.ImageLable.text = (String(temp))
+                    
+                
+                    
+                    switch main {
+                        
+                    case "Clear":
+                        self.ConditionImageView.image = UIImage(named: "01d")
+                    case "Clouds":
+                        self.ConditionImageView.image = UIImage(named: "02d")
+                    case "Drizzle":
+                        self.ConditionImageView.image = UIImage(named: "09d")
+                    case "Rain":
+                        self.ConditionImageView.image = UIImage(named: "10d")
+                    case "Thunderstorm":
+                        self.ConditionImageView.image = UIImage(named: "11d")
+                    case "Snow":
+                        self.ConditionImageView.image = UIImage(named: "13d")
+                    case "scattered clouds":
+                        self.ConditionImageView.image = UIImage(named: "10d")
+                        
+                    default:
+                        
+                        self.ConditionImageView.image = UIImage(named: "01d")
+                    }
                 }
              
                     
